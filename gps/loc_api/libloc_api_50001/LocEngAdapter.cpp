@@ -81,6 +81,7 @@ LocEngAdapter::LocEngAdapter(LOC_API_ADAPTER_EVENT_MASK_T mask,
 {
     memset(&mFixCriteria, 0, sizeof(mFixCriteria));
     mFixCriteria.mode = LOC_POSITION_MODE_INVALID;
+    clearGnssSvUsedListData();
     LOC_LOGD("LocEngAdapter created");
 }
 
@@ -268,6 +269,9 @@ void LocInternalAdapter::setUlpProxy(UlpProxyBase* ulp) {
         virtual void proc() const {
             LOC_LOGV("%s] ulp %p adapter %p", __func__,
                      mUlp, mAdapter);
+            if (mUlp) {
+                mUlp->setCapabilities(ContextBase::getCarrierCapabilities());
+            }
             mAdapter->setUlpProxy(mUlp);
         }
     };
