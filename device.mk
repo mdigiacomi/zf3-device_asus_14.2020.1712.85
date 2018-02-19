@@ -225,9 +225,6 @@ PRODUCT_PACKAGES += \
     Gello
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8953 \
-    libgnsspps
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
